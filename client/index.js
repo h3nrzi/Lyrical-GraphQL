@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import ApolloClient from "apollo-client";
 import { ApolloProvider } from "react-apollo";
 
-const clinet = new ApolloClient({});
+const client = new ApolloClient({});
 
 const Root = () => {
   return (
-    <ApolloProvider client={clinet}>
+    <ApolloProvider client={client}>
       <div>Lyrical</div>
     </ApolloProvider>
   );
