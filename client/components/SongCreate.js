@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import { Link } from "react-router";
 
 class SongCreate extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class SongCreate extends React.Component {
         <form onSubmit={this.createSongHandler.bind(this)}>
           <label>Song Title:</label>
           <input value={this.state.title} onChange={e => this.setState({ title: e.target.value })} />
+          <button type="submit" className="btn">
+            Create Song
+          </button>
         </form>
       </div>
     );
