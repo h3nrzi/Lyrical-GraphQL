@@ -1,8 +1,17 @@
-# Lyrical-GraphQL
+## Important packages
 
-Starter project from a GraphQL course on Udemy.com
+- express: 4.14,
+- express-graphql: 0.6,
+- mongoose: 7.3,
 
-### Setup
+---
 
-- Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
-- Access the application at `localhost:4000` in your browser
+- apollo-client: 0.8,
+- graphql: 0.8,
+
+---
+
+- react: 15.4,
+- react-dom: 15.4,
+- react-apollo: 0.9,
+- react-router: 3.0,
