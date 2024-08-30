@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link, hashHistory } from "react-router";
 import { withState } from "recompose";
+import query from "../queries/fetchSong";
 
 const SongCreate = ({ mutate, state, setState }) => {
   function createSongHandler(e) {
@@ -10,6 +11,7 @@ const SongCreate = ({ mutate, state, setState }) => {
 
     mutate({
       variables: { title: state.title },
+      refetchQueries: [{ query }],
     }).then(() => hashHistory.push("/"));
   }
 

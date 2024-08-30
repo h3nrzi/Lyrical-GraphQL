@@ -1,7 +1,7 @@
 import React from "react";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
+import query from "../queries/fetchSong";
 
 const SongList = ({ data }) => {
   if (data.loading) return <div>Loading...</div>;
@@ -23,14 +23,5 @@ const SongList = ({ data }) => {
 const Song = ({ song }) => {
   return <li className="collection-item">{song.title}</li>;
 };
-
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
 
 export default graphql(query)(SongList);
