@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
 import query from "../queries/fetchSong";
+import gql from "graphql-tag";
 
 const SongList = ({ data }) => {
   if (data.loading) return <div>Loading...</div>;
@@ -21,7 +22,28 @@ const SongList = ({ data }) => {
 };
 
 const Song = ({ song }) => {
-  return <li className="collection-item">{song.title}</li>;
+  return (
+    <div>
+      <li className="collection-item">{song.title}</li>
+      <button className="btn btn-small">
+        <i className="material-icons">delete</i>
+      </button>
+    </div>
+  );
 };
 
-export default graphql(query)(SongList);
+const mutation = gql`
+  mutation DeleteSong($id: ID) {
+    deleteSong(id: $id) {
+      title
+    }
+  }
+`;
+
+export default graphql(mutation)(
+  //
+  graphql(query)(
+    //
+    SongList,
+  ),
+);
