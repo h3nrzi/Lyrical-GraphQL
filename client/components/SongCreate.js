@@ -1,42 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link, hashHistory } from "react-router";
+import { withState } from "recompose";
 
-class SongCreate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { title: "" };
-  }
-
-  createSongHandler(e) {
+const SongCreate = ({ mutate, state, setState }) => {
+  function createSongHandler(e) {
     e.preventDefault();
 
-    this.props
-      .mutate({
-        variables: { title: this.state.title },
-      })
-      .then(() => hashHistory.push("/"));
+    mutate({
+      variables: { title: state.title },
+    }).then(() => hashHistory.push("/"));
   }
 
-  render() {
-    return (
-      <div className="">
-        <Link to="/" onlyActiveOnIndex className="btn btn-flat">
-          Back
-        </Link>
-        <h3>Create a New Song</h3>
-        <form onSubmit={this.createSongHandler.bind(this)}>
-          <label>Song Title:</label>
-          <input value={this.state.title} onChange={e => this.setState({ title: e.target.value })} />
-          <button type="submit" className="btn">
-            Create Song <i className="material-icons right">send</i>
-          </button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="">
+      <Link to="/" onlyActiveOnIndex className="btn btn-flat">
+        Back
+      </Link>
+      <h3>Create a New Song</h3>
+      <form onSubmit={createSongHandler}>
+        <label>Song Title:</label>
+        <input value={state.title} onChange={e => setState({ title: e.target.value })} />
+        <button type="submit" className="btn">
+          Create Song <i className="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  );
+};
+
+const enhance = withState("state", "setState", { title: "" });
+const EnhancedSongCreate = enhance(SongCreate);
 
 const mutation = gql`
   mutation AddSong($title: String) {
@@ -46,4 +41,4 @@ const mutation = gql`
   }
 `;
 
-export default graphql(mutation)(SongCreate);
+export default graphql(mutation)(EnhancedSongCreate);
