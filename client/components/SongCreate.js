@@ -22,8 +22,8 @@ const SongCreate = ({ mutate, state, setState }) => {
       </Link>
       <h3>Create a New Song</h3>
       <form onSubmit={createSongHandler}>
-        <label>Song Title:</label>
-        <input value={state.title} onChange={e => setState({ title: e.target.value })} />
+        <label htmlFor="song-title">Song Title:</label>
+        <input id="song-title" value={state.title} onChange={e => setState({ title: e.target.value })} />
         <button type="submit" className="btn">
           Create Song <i className="material-icons right">send</i>
         </button>
