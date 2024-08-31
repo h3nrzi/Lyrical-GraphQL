@@ -4,14 +4,18 @@ import { Link } from "react-router";
 import query from "../queries/fetchSong";
 import gql from "graphql-tag";
 
-const SongList = ({ data }) => {
+const SongList = ({ data, mutate }) => {
   if (data.loading) return <div>Loading...</div>;
+
+  function deleteSongHandler(id) {
+    mutate({ variables: { id } }).then(() => data.refetch());
+  }
 
   return (
     <div>
       <ul className="collection">
         {data.songs.map(song => (
-          <Song key={song.id} song={song} />
+          <Song key={song.id} song={song} onDelete={deleteSongHandler} />
         ))}
       </ul>
       <Link to="/songs/new" className="btn-floating btn-large red right" onlyActiveOnIndex>
@@ -21,14 +25,14 @@ const SongList = ({ data }) => {
   );
 };
 
-const Song = ({ song }) => {
+const Song = ({ song, onDelete }) => {
   return (
-    <div>
-      <li className="collection-item">{song.title}</li>
-      <button className="btn btn-small">
-        <i className="material-icons">delete</i>
-      </button>
-    </div>
+    <li className="collection-item">
+      {song.title}
+      <i className="material-icons red-text right" style={{ cursor: "pointer" }} onClick={() => onDelete(song.id)}>
+        delete
+      </i>
+    </li>
   );
 };
 
