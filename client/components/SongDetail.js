@@ -16,18 +16,14 @@ const SongDetail = props => {
         Back
       </Link>
       <h3>{song.title}</h3>
-      <LyricList />
+      <LyricList lyrics={song.lyrics} />
       <LyricCreate songId={song.id} />
     </div>
   );
 };
 
-export default graphql(
-  //
-  fetchSong,
-  {
-    options: props => ({
-      variables: { id: props.params.id },
-    }),
-  },
-)(SongDetail);
+export default graphql(fetchSong, {
+  options: props => ({
+    variables: { id: props.params.id },
+  }),
+})(SongDetail);
