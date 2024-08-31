@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import { Link, hashHistory } from "react-router";
 import { withState } from "recompose";
 import query from "../api/queries/fetchSongs";
+import createSong from "../api/mutations/createSong";
 
 const SongCreate = ({ mutate, state, setState }) => {
   function createSongHandler(e) {
@@ -35,12 +35,4 @@ const SongCreate = ({ mutate, state, setState }) => {
 const enhance = withState("state", "setState", { title: "" });
 const EnhancedSongCreate = enhance(SongCreate);
 
-const mutation = gql`
-  mutation AddSong($title: String) {
-    addSong(title: $title) {
-      title
-    }
-  }
-`;
-
-export default graphql(mutation)(EnhancedSongCreate);
+export default graphql(createSong)(EnhancedSongCreate);

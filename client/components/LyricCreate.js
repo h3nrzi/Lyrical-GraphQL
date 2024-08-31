@@ -1,7 +1,7 @@
 import React from "react";
 import { withState } from "recompose";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
+import addLyricToSong from "../api/mutations/addLyricToSong";
 
 const LyricCreate = ({ state, setState, mutate, songId }) => {
   function createLyricHandler(e) {
@@ -28,15 +28,4 @@ const LyricCreate = ({ state, setState, mutate, songId }) => {
 const enhance = withState("state", "setState", { content: "" });
 const EnhancedLyricCreate = enhance(LyricCreate);
 
-const mutation = gql`
-  mutation AddLyricToSong($content: String, $songId: ID) {
-    addLyricToSong(content: $content, songId: $songId) {
-      id
-      lyrics {
-        content
-      }
-    }
-  }
-`;
-
-export default graphql(mutation)(EnhancedLyricCreate);
+export default graphql(addLyricToSong)(EnhancedLyricCreate);

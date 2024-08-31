@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
-import query from "../api/queries/fetchSongs";
-import gql from "graphql-tag";
+import fetchSongs from "../api/queries/fetchSongs";
+import deleteSong from "../api/mutations/deleteSong";
 
 const SongList = ({ data, mutate }) => {
   if (data.loading) return <div>Loading...</div>;
@@ -38,18 +38,4 @@ const Song = ({ song, onDelete }) => {
   );
 };
 
-const mutation = gql`
-  mutation DeleteSong($id: ID) {
-    deleteSong(id: $id) {
-      title
-    }
-  }
-`;
-
-export default graphql(mutation)(
-  //
-  graphql(query)(
-    //
-    SongList,
-  ),
-);
+export default graphql(deleteSong)(graphql(fetchSongs)(SongList));
