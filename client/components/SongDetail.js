@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "react-apollo";
-import fetchSong from "../queries/fetchSong";
+import fetchSong from "../api/queries/fetchSong";
 import { Link } from "react-router";
 import LyricCreate from "./LyricCreate";
 
