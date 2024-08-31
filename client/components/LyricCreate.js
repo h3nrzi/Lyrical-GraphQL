@@ -3,10 +3,15 @@ import { withState } from "recompose";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
-const LyricCreate = ({ state, setState }) => {
+const LyricCreate = ({ state, setState, mutate, songId }) => {
   function createLyricHandler(e) {
     e.preventDefault();
-    console.log(state);
+    mutate({
+      variables: {
+        content: state.content,
+        songId,
+      },
+    }).then(() => setState({ content: "" }));
   }
 
   return (
