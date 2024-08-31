@@ -1,13 +1,19 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import fetchSong from "../queries/fetchSong";
+import { Link } from "react-router";
 
-const SongDetail = ({ data }) => {
-  if (data.loading) return <div>Loading...</div>;
+const SongDetail = props => {
+  const { song, loading } = props.data;
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div>
-      <h3>Song Detail</h3>
+      <Link onlyActiveOnIndex to="/">
+        Back
+      </Link>
+      <h3>{song.title}</h3>
     </div>
   );
 };

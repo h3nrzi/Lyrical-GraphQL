@@ -17,7 +17,7 @@ const SongCreate = ({ mutate, state, setState }) => {
 
   return (
     <div className="">
-      <Link to="/" onlyActiveOnIndex className="btn btn-flat">
+      <Link onlyActiveOnIndex to="/">
         Back
       </Link>
       <h3>Create a New Song</h3>

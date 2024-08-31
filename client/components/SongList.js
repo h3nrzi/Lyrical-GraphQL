@@ -28,7 +28,9 @@ const SongList = ({ data, mutate }) => {
 const Song = ({ song, onDelete }) => {
   return (
     <li className="collection-item">
-      {song.title}
+      <Link to={`/songs/${song.id}`} onlyActiveOnIndex>
+        {song.title}
+      </Link>
       <i className="material-icons red-text right" style={{ cursor: "pointer" }} onClick={() => onDelete(song.id)}>
         delete
       </i>
