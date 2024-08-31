@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
-import query from "../queries/fetchSong";
+import query from "../queries/fetchSongs";
 import gql from "graphql-tag";
 
 const SongList = ({ data, mutate }) => {
