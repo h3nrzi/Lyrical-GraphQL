@@ -1,14 +1,13 @@
 import React from "react";
 import { graphql } from "react-apollo";
-import { Link, hashHistory } from "react-router";
-import { withState } from "recompose";
+import { hashHistory, Link } from "react-router";
 import query from "../../api/queries/fetchSongs";
 import createSong from "../../api/mutations/createSong";
+import SongCreate from "../SongCreate";
 
-const SongCreatePage = ({ mutate, state, setState }) => {
-  function createSongHandler(e) {
-    e.preventDefault();
-
+const SongCreatePage = ({ mutate }) => {
+  function createSongHandler(state) {
+    console.log(state);
     mutate({
       variables: { title: state.title },
       refetchQueries: [{ query }],
@@ -21,18 +20,9 @@ const SongCreatePage = ({ mutate, state, setState }) => {
         Back
       </Link>
       <h3>Create a New Song</h3>
-      <form onSubmit={createSongHandler}>
-        <label htmlFor="song-title">Song Title:</label>
-        <input id="song-title" value={state.title} onChange={e => setState({ title: e.target.value })} />
-        <button type="submit" className="btn">
-          Create Song <i className="material-icons right">send</i>
-        </button>
-      </form>
+      <SongCreate onSubmit={createSongHandler} />
     </div>
   );
 };
 
-const enhance = withState("state", "setState", { title: "" });
-const EnhancedSongCreate = enhance(SongCreatePage);
-
-export default graphql(createSong)(EnhancedSongCreate);
+export default graphql(createSong)(SongCreatePage);
