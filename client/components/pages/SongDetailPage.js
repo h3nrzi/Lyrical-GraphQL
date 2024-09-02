@@ -4,26 +4,36 @@ import fetchSong from "../../api/queries/fetchSong";
 import { Link } from "react-router";
 import LyricCreate from "../LyricCreate";
 import LyricList from "../LyricList";
+import addLyricToSong from "../../api/mutations/addLyricToSong";
 
-const SongDetailPage = props => {
-  const { song, loading } = props.data;
+const SongDetailPage = ({ data, mutate }) => {
+  if (data.loading) return <div>Loading...</div>;
 
-  if (loading) return <div>Loading...</div>;
+  function addLyricToSongHandler(state) {
+    return mutate({
+      variables: {
+        content: state.content,
+        songId: data.song.id,
+      },
+    });
+  }
 
   return (
     <div>
       <Link onlyActiveOnIndex to="/">
         Back
       </Link>
-      <h3>{song.title}</h3>
-      <LyricList lyrics={song.lyrics} />
-      <LyricCreate songId={song.id} />
+      <h3>{data.song.title}</h3>
+      <LyricList lyrics={data.song.lyrics} />
+      <LyricCreate onSubmit={addLyricToSongHandler} />
     </div>
   );
 };
 
-export default graphql(fetchSong, {
-  options: props => ({
-    variables: { id: props.params.id },
-  }),
-})(SongDetailPage);
+export default graphql(addLyricToSong)(
+  graphql(fetchSong, {
+    options: props => ({
+      variables: { id: props.params.id },
+    }),
+  })(SongDetailPage),
+);

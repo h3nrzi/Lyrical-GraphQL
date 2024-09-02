@@ -1,21 +1,14 @@
 import React from "react";
 import { withState } from "recompose";
-import { graphql } from "react-apollo";
-import addLyricToSong from "../api/mutations/addLyricToSong";
 
-const LyricCreate = ({ state, setState, mutate, songId }) => {
-  function createLyricHandler(e) {
+const LyricCreate = ({ state, setState, onSubmit }) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    mutate({
-      variables: {
-        content: state.content,
-        songId,
-      },
-    }).then(() => setState({ content: "" }));
+    onSubmit(state).then(() => setState({ content: "" }));
   }
 
   return (
-    <form onSubmit={createLyricHandler}>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="song-lyric">Add a Lyric</label>
       <input id="song-lyric" value={state.content} onChange={e => setState({ content: e.target.value })} />
       <button type="submit" className="btn">
@@ -26,6 +19,4 @@ const LyricCreate = ({ state, setState, mutate, songId }) => {
 };
 
 const enhance = withState("state", "setState", { content: "" });
-const EnhancedLyricCreate = enhance(LyricCreate);
-
-export default graphql(addLyricToSong)(EnhancedLyricCreate);
+export default enhance(LyricCreate);
