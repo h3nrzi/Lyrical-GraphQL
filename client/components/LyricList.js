@@ -6,13 +6,14 @@ const LyricList = ({ lyrics, onLike }) => {
       {lyrics.map(lyric => (
         <li key={lyric.id} className="collection-item">
           {lyric.content}
-          <i
-            className="material-icons blue-grey-text right"
-            style={{ cursor: "pointer" }}
-            onClick={() => onLike(lyric.id)}
-          >
-            thumb_up
-          </i>
+          <div className="right">
+            <i className="material-icons blue-grey-text" style={{ cursor: "pointer" }} onClick={() => onLike(lyric.id)}>
+              thumb_up
+            </i>
+            <span data-badge-caption="" className="new badge">
+              {lyric.likes}
+            </span>
+          </div>
         </li>
       ))}
     </ul>

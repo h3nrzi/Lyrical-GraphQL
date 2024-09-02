@@ -5,12 +5,13 @@ import { Link } from "react-router";
 import LyricCreate from "../LyricCreate";
 import LyricList from "../LyricList";
 import addLyricToSong from "../../api/mutations/addLyricToSong";
+import likeLyric from "../../api/mutations/likeLyric";
 
-const SongDetailPage = ({ data, mutate }) => {
+const SongDetailPage = ({ data, addLyricToSongMutation, likeLyricMutation }) => {
   if (data.loading) return <div>Loading...</div>;
 
   function addLyricToSongHandler(state) {
-    return mutate({
+    return addLyricToSongMutation({
       variables: {
         content: state.content,
         songId: data.song.id,
@@ -19,7 +20,9 @@ const SongDetailPage = ({ data, mutate }) => {
   }
 
   function likeLyricHandler(id) {
-    console.log(id);
+    likeLyricMutation({
+      variables: { id },
+    });
   }
 
   return (
@@ -34,10 +37,16 @@ const SongDetailPage = ({ data, mutate }) => {
   );
 };
 
-export default graphql(addLyricToSong)(
-  graphql(fetchSong, {
-    options: props => ({
-      variables: { id: props.params.id },
-    }),
-  })(SongDetailPage),
+export default graphql(likeLyric, {
+  name: "likeLyricMutation",
+})(
+  graphql(addLyricToSong, {
+    name: "addLyricToSongMutation",
+  })(
+    graphql(fetchSong, {
+      options: props => ({
+        variables: { id: props.params.id },
+      }),
+    })(SongDetailPage),
+  ),
 );
