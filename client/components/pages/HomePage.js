@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import { Link } from "react-router";
 import fetchSongs from "../../api/queries/fetchSongs";
 import deleteSong from "../../api/mutations/deleteSong";
+import SongList from "../SongList";
 
 const HomePage = ({ data, mutate }) => {
   if (data.loading) return <div>Loading...</div>;
@@ -13,29 +14,11 @@ const HomePage = ({ data, mutate }) => {
 
   return (
     <div>
-      <ul className="collection">
-        {data.songs.map(song => (
-          <Song key={song.id} song={song} onDelete={deleteSongHandler} />
-        ))}
-      </ul>
+      <SongList songs={data.songs} onDelete={deleteSongHandler} />
       <Link to="/songs/new" className="btn-floating btn-large red right" onlyActiveOnIndex>
         <i className="material-icons">add</i>
       </Link>
     </div>
   );
 };
-
-const Song = ({ song, onDelete }) => {
-  return (
-    <li className="collection-item">
-      <Link to={`/songs/${song.id}`} onlyActiveOnIndex>
-        {song.title}
-      </Link>
-      <i className="material-icons red-text right" style={{ cursor: "pointer" }} onClick={() => onDelete(song.id)}>
-        delete
-      </i>
-    </li>
-  );
-};
-
 export default graphql(deleteSong)(graphql(fetchSongs)(HomePage));
