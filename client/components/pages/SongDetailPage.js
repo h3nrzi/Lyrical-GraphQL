@@ -18,13 +18,17 @@ const SongDetailPage = ({ data, mutate }) => {
     });
   }
 
+  function addLikeLyricHandler(id) {
+    console.log(id);
+  }
+
   return (
     <div>
       <Link onlyActiveOnIndex to="/">
         Back
       </Link>
       <h3>{data.song.title}</h3>
-      {data.song.lyrics.length > 0 && <LyricList lyrics={data.song.lyrics} />}
+      {data.song.lyrics.length > 0 && <LyricList lyrics={data.song.lyrics} onLike={addLikeLyricHandler} />}
       <LyricCreate onSubmit={addLyricToSongHandler} />
     </div>
   );

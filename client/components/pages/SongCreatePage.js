@@ -7,7 +7,6 @@ import SongCreate from "../SongCreate";
 
 const SongCreatePage = ({ mutate }) => {
   function createSongHandler(state) {
-    console.log(state);
     mutate({
       variables: { title: state.title },
       refetchQueries: [{ query }],
