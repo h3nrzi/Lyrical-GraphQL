@@ -14,7 +14,7 @@ const HomePage = ({ data, mutate }) => {
 
   return (
     <div>
-      <SongList songs={data.songs} onDelete={deleteSongHandler} />
+      {data.songs.length > 0 && <SongList songs={data.songs} onDelete={deleteSongHandler} />}
       <Link to="/songs/new" className="btn-floating btn-large red right" onlyActiveOnIndex>
         <i className="material-icons">add</i>
       </Link>

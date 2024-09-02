@@ -24,7 +24,7 @@ const SongDetailPage = ({ data, mutate }) => {
         Back
       </Link>
       <h3>{data.song.title}</h3>
-      <LyricList lyrics={data.song.lyrics} />
+      {data.song.lyrics.length > 0 && <LyricList lyrics={data.song.lyrics} />}
       <LyricCreate onSubmit={addLyricToSongHandler} />
     </div>
   );
