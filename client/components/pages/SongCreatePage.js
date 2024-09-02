@@ -2,10 +2,10 @@ import React from "react";
 import { graphql } from "react-apollo";
 import { Link, hashHistory } from "react-router";
 import { withState } from "recompose";
-import query from "../api/queries/fetchSongs";
-import createSong from "../api/mutations/createSong";
+import query from "../../api/queries/fetchSongs";
+import createSong from "../../api/mutations/createSong";
 
-const SongCreate = ({ mutate, state, setState }) => {
+const SongCreatePage = ({ mutate, state, setState }) => {
   function createSongHandler(e) {
     e.preventDefault();
 
@@ -33,6 +33,6 @@ const SongCreate = ({ mutate, state, setState }) => {
 };
 
 const enhance = withState("state", "setState", { title: "" });
-const EnhancedSongCreate = enhance(SongCreate);
+const EnhancedSongCreate = enhance(SongCreatePage);
 
 export default graphql(createSong)(EnhancedSongCreate);

@@ -1,10 +1,10 @@
 import React from "react";
 import { graphql } from "react-apollo";
 import { Link } from "react-router";
-import fetchSongs from "../api/queries/fetchSongs";
-import deleteSong from "../api/mutations/deleteSong";
+import fetchSongs from "../../api/queries/fetchSongs";
+import deleteSong from "../../api/mutations/deleteSong";
 
-const SongList = ({ data, mutate }) => {
+const HomePage = ({ data, mutate }) => {
   if (data.loading) return <div>Loading...</div>;
 
   function deleteSongHandler(id) {
@@ -38,4 +38,4 @@ const Song = ({ song, onDelete }) => {
   );
 };
 
-export default graphql(deleteSong)(graphql(fetchSongs)(SongList));
+export default graphql(deleteSong)(graphql(fetchSongs)(HomePage));

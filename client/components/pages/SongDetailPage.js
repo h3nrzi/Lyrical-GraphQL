@@ -1,11 +1,11 @@
 import React from "react";
 import { graphql } from "react-apollo";
-import fetchSong from "../api/queries/fetchSong";
+import fetchSong from "../../api/queries/fetchSong";
 import { Link } from "react-router";
-import LyricCreate from "./LyricCreate";
-import LyricList from "./LyricList";
+import LyricCreate from "../LyricCreate";
+import LyricList from "../LyricList";
 
-const SongDetail = props => {
+const SongDetailPage = props => {
   const { song, loading } = props.data;
 
   if (loading) return <div>Loading...</div>;
@@ -26,4 +26,4 @@ export default graphql(fetchSong, {
   options: props => ({
     variables: { id: props.params.id },
   }),
-})(SongDetail);
+})(SongDetailPage);
