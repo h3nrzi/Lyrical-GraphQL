@@ -19,9 +19,17 @@ const SongDetailPage = ({ data, addLyricToSongMutation, likeLyricMutation }) => 
     });
   }
 
-  function likeLyricHandler(id) {
+  function likeLyricHandler(id, likes) {
     likeLyricMutation({
       variables: { id },
+      optimisticResponse: {
+        __typename: "Mutation",
+        likeLyric: {
+          id,
+          __typename: "LyricType",
+          likes: likes + 1,
+        },
+      },
     });
   }
 

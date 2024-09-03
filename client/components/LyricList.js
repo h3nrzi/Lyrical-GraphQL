@@ -7,7 +7,11 @@ const LyricList = ({ lyrics, onLike }) => {
         <li key={lyric.id} className="collection-item">
           {lyric.content}
           <div className="right">
-            <i className="material-icons blue-grey-text" style={{ cursor: "pointer" }} onClick={() => onLike(lyric.id)}>
+            <i
+              className="material-icons blue-grey-text"
+              style={{ cursor: "pointer" }}
+              onClick={() => onLike(lyric.id, lyric.likes)}
+            >
               thumb_up
             </i>
             <span data-badge-caption="" className="new badge">
