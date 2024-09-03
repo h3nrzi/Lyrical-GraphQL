@@ -1,4 +1,12 @@
-## Important packages
+# Lyrical-GraphQL
+
+---
+
+![Lyrical-GraphQL](./cover.png)
+
+# Important Packages
+
+---
 
 - express: 4.14,
 - express-graphql: 0.6,
