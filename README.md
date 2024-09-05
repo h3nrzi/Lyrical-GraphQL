@@ -2,20 +2,7 @@
 
 ![Lyrical-GraphQL](./cover.png)
 
-# Important Packages
+# Setup
 
-- express: 4.14,
-- express-graphql: 0.6,
-- mongoose: 7.3,
-
----
-
-- apollo-client: 0.8,
-- graphql: 0.8,
-
----
-
-- react: 15.4,
-- react-dom: 15.4,
-- react-apollo: 0.9,
-- react-router: 3.0,
+- Run `npm install --legacy-peer-deps` in the root of the project to install dependencies
+- Access the application at `localhost:4000` in your browser
