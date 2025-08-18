@@ -1,12 +1,5 @@
 # Lyrical-GraphQL-MERN
 
-![License](https://img.shields.io/badge/license-ISC-blue.svg)
-![Node.js](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/react-15.4.2-blue.svg)
-![GraphQL](https://img.shields.io/badge/graphql-0.8.2-e10098.svg)
-![MongoDB](https://img.shields.io/badge/mongodb-compatible-green.svg)
-![Apollo](https://img.shields.io/badge/apollo--client-0.8.1-311c87.svg)
-
 ![Lyrical-GraphQL](./cover.png)
 
 A full-stack web application for managing songs and lyrics, built with React, GraphQL, Apollo Client, and MongoDB. Users can create songs, add lyrics to songs, and like individual lyrics.
