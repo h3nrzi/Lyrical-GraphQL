@@ -1,5 +1,12 @@
 # Lyrical-GraphQL-MERN
 
+![License](https://img.shields.io/badge/license-ISC-blue.svg)
+![Node.js](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)
+![React](https://img.shields.io/badge/react-15.4.2-blue.svg)
+![GraphQL](https://img.shields.io/badge/graphql-0.8.2-e10098.svg)
+![MongoDB](https://img.shields.io/badge/mongodb-compatible-green.svg)
+![Apollo](https://img.shields.io/badge/apollo--client-0.8.1-311c87.svg)
+
 ![Lyrical-GraphQL](./cover.png)
 
 A full-stack web application for managing songs and lyrics, built with React, GraphQL, Apollo Client, and MongoDB. Users can create songs, add lyrics to songs, and like individual lyrics.
@@ -165,14 +172,3 @@ Access the GraphQL playground at `/graphql` to explore:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the ISC License.
-
-## 🔗 Links
-
-- [GraphQL Documentation](https://graphql.org/)
-- [Apollo Client Documentation](https://www.apollographql.com/docs/react/)
-- [React Documentation](https://reactjs.org/)
-- [MongoDB Documentation](https://docs.mongodb.com/)
